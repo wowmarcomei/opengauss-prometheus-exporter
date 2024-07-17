@@ -6,6 +6,9 @@ on:
       - master
   workflow_dispatch:
 
+env:
+  DATE: ${{ toJson(fromJson('["${{ dates.format('yyyyMMdd') }}"]')[0]) }}
+
 jobs:
 
   build-and-push:
@@ -32,5 +35,5 @@ jobs:
         platforms: linux/amd64,linux/arm64
         push: true
         tags: |
-          ghcr.io/wowmarcomei/opengauss-prometheus-exporter:v0.1-20240717
+          ghcr.io/wowmarcomei/opengauss-prometheus-exporter:${{ env.DATE }}
 
