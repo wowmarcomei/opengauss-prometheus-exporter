@@ -6,12 +6,18 @@ on:
       - master
   workflow_dispatch:
 
+env:
+  RELEASE_VERSION: ${{ date('yyyyMMdd') }}
+  
 jobs:
 
   build-and-push:
     runs-on: ubuntu-latest
     
     steps:
+    - name: Print Release Version
+      run: echo "Release Version is ${{ env.RELEASE_VERSION }}"
+      
     - name: Checkout
       uses: actions/checkout@v3
       
@@ -32,4 +38,4 @@ jobs:
         platforms: linux/amd64,linux/arm64
         push: true
         tags: |
-          ghcr.io/wowmarcomei/opengauss-prometheus-exporter:20240717
+          ghcr.io/wowmarcomei/opengauss-prometheus-exporter:${{ env.RELEASE_VERSION }}
