@@ -34,4 +34,4 @@ jobs:
         context: .
         platforms: linux/amd64,linux/arm64
         push: true
-        tags: ghcr.io/wowmarcomei/opengauss-prometheus-exporter:${{ env.CURRENT_DATE }}
+        tags: ghcr.io/{{ github.actor }}/opengauss-prometheus-exporter:${{ env.CURRENT_DATE }}
